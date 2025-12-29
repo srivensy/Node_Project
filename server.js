@@ -1,37 +1,21 @@
-// console.log("Welcome to Express js,just now I've added nodemon into my project")
-
 import express from 'express'
+import dotenv from 'dotenv'
 
-// above one is based on ES-6 (javascript) Module 
+import mongoose from 'mongoose'
+import bodyparser from 'body-parser'
 
-// const express = require('express')
-
-// above one is based on comon javascript module
+dotenv.config()
 
 const app = express()
-const port = 5000
 
-// examples for API's
+const PORT = process.env.PORT || 5000
 
-// we have 4 types of API's
-
-// GET,POST,PUT/UPDATE , DELETE
-
-// GET API
-
-app.get('/name',(request,response)=>{
-    response.send("My name is Rajesh")
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+    console.log("mongDB Connect Successfully")
+}).catch((error)=>{
+    console.log("MongDB Not Connected")
 })
 
-app.get('/designation',(request,response)=>{
-    response.send("I have been working as Software Development Lead")
+app.listen(PORT,()=>{
+    console.log(`server started and running on port ${PORT}`)
 })
-
-app.get('/',(request,response)=>{
-    response.send("This is home page")
-})
-
-app.listen(port,()=>{
-    console.log("Server is running successfully!...")
-})
-
