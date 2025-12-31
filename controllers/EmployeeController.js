@@ -19,5 +19,17 @@ export const employeeController = {
       console.error("Error in employee controller:", error)
       res.status(500).json({ message: "Server error" })
     }
+  },
+
+  getEmployee: async(req,res)=>{
+    try{
+      const employee = await Employee.find()
+      res.status(200).json(employee)
+    }catch{
+      console.error("This is an error",error)
+      res.status(500).json({message:"servererror"})
+    }
   }
+ 
+  
 }
